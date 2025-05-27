@@ -14,6 +14,7 @@ Route::get('/jobs', function () {
 Route::get('/jobs/{id}',function ($id) {
 
     $job = Job::find( $id );
+    if(empty($job)) abort(404);
     return view('job',['job' => $job]);
 });
 
