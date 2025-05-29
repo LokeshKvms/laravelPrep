@@ -10,11 +10,14 @@
             This job gets you <span class="font-medium">{{ $job->salary }}</span> per month.
         </p>
 
-        <p>
-            <x-button href="/jobs/{{ $job->id }}/edit">
-                Edit Job
-            </x-button>
-        </p>
+
+        @can('edit',$job)
+            <p>
+                <x-button href="/jobs/{{ $job->id }}/edit">
+                    Edit Job
+                </x-button>
+            </p>
+        @endcan
     </div>
 
 </x-layout>

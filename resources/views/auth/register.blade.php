@@ -11,8 +11,8 @@
             </div>
             <div class="grid sm:grid-cols-2 gap-8">
                 <div>
-                    <x-form-label for="naam">Your Name</x-form-label>
-                    <x-form-input required type="text" name="naam" id="naam" placeholder="Enter your name"/>
+                    <x-form-label for="name">Your Name</x-form-label>
+                    <x-form-input required type="text" name="name" id="name" placeholder="Enter your name"/>
                 </div>
 
                 <div>
@@ -26,8 +26,8 @@
                 </div>
 
                 <div>
-                    <x-form-label for="confirm_password">Confirm Password</x-form-label>
-                    <x-form-input required type="password" name="confirm_password" id="confirm_password" placeholder="Confirm the password"/>
+                    <x-form-label for="password_confirmation">Confirm Password</x-form-label>
+                    <x-form-input required type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm the password"/>
                 </div>
             </div>
         </div>

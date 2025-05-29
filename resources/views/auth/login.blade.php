@@ -12,7 +12,7 @@
             <div class="grid sm:grid-cols-2 gap-8">
                 <div>
                     <x-form-label for="email">Email</x-form-label>
-                    <x-form-input required type="email" name="email" id="email" placeholder="Enter your email"/>
+                    <x-form-input required type="email" name="email" id="email" :value="old('email')" placeholder="Enter your email"/>
                 </div>
 
                 <div>
