@@ -1,56 +1,22 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Job;
-
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->latest()->paginate(10);
-    return view('jobs.index',['jobs'=>$jobs]);
-});
-
-Route::get('/jobs/create',function () {
-    return view('jobs.create');
-});
-
-Route::post('/jobs', function () {
-    $title = request('title');
-    $salary = trim(request('salary'));
-
-    if ($salary && !str_starts_with($salary, '₹')) {
-        $salary = '₹' . $salary;
-    }
-
-    request()->merge(['salary' => $salary]);
-
-    request()->validate([
-        'title' => 'required|min:3|max:25',
-        'salary' => [
-            'required',
-            'regex:/^₹\d{1,3}(,\d{2,3})*$|^₹\d+$/',
-        ],
-    ]);
-
-    Job::create([
-        'title' => $title,
-        'salary' => $salary,
-        'employer_id' => 1,
-    ]);
-
-    return redirect('/jobs');
-});
 
 
-Route::get('/jobs/{id}',function ($id) {
-    
-    $job = Job::find( $id );
-    if(empty($job)) abort(404);
-    return view('jobs.show',['job' => $job]);
-});
+Route::view('/','home');
+Route::view('/contact','contact');
 
-Route::get('/contact',function () {
-    return view('contact');
-});
+// Job routes
+// Route::controller(JobController::class)->group(function () {
+//     Route::get('/jobs', 'index')->name('jobs.index');
+//     Route::get('/jobs/create', 'create');
+//     Route::post('/jobs', 'store');
+//     Route::get('/jobs/{job}', 'show');
+//     Route::get('/jobs/{job}/edit', 'edit');
+//     Route::patch('/jobs/{job}', 'update');
+//     Route::delete('/jobs/{job}', 'destroy');
+// });
+
+// Alternatively, using resource route
+Route::resource('jobs', JobController::class);

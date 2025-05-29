@@ -3,8 +3,18 @@
         JOB
     </x-slot:heading>
 
-    <h2 class="font-bold text-lg">{{ $job['title']}}</h2>
-    <p>
-        This job gets you {{$job['salary']}} per month.
-    </p>
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto space-y-5">
+        <h2 class="text-2xl font-semibold text-gray-800">{{ $job->title }}</h2>
+        
+        <p class="text-gray-600">
+            This job gets you <span class="font-medium">{{ $job->salary }}</span> per month.
+        </p>
+
+        <p>
+            <x-button href="/jobs/{{ $job->id }}/edit">
+                Edit Job
+            </x-button>
+        </p>
+    </div>
+
 </x-layout>
